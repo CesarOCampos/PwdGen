@@ -17,13 +17,17 @@ function generatePassword() {
     var special = confirm("Would you like to include special characters?");
     var numeric = confirm("Would you like to include numeric characters?");
 
-    if (lowercase === false && uppercase === false && special === false && numeric === false) {
+    if (lowercase == false && uppercase == false && special == false && numeric == false) {
         alert("Please select atleast one type of character.");
         upperCase = confirm("Would you like to include uppercase characters?");
         lowerCase = confirm("Would you like to include lowercase characters?");
         special = confirm("Would you like to include special characters?");
         numeric = confirm("Would you like to include numeric characters?");
     }
+    passwordLength();
+};
+
+function passwordLength() {
     var passwordLength = parseInt(prompt("How many characters would you like your password to be? It should be atleast 8, but not exceed 128 characters."));
 
     if (passwordLength < 8) {
@@ -35,10 +39,10 @@ function generatePassword() {
     } else {
         prompt("How many characters would you like your password to be? It should be atleast 8, but not exceed 128 characters.");
     }
-    if (lowercase === true) { caseArray.push(lowerCaseChar) };
-    if (uppercase === true) { caseArray.push(upperCaseChar) };
-    if (special === true) { caseArray.push(specialChar) };
-    if (numeric === true) { caseArray.push(numericChar) };
+    if (lowercase == true) { caseArray.push(lowerCaseChar) };
+    if (uppercase == true) { caseArray.push(upperCaseChar) };
+    if (special == true) { caseArray.push(specialChar) };
+    if (numeric == true) { caseArray.push(numericChar) };
 
     for (var i = 0; i < passwordLength; i++) {
         var randomCharArrayNum;
@@ -50,12 +54,10 @@ function generatePassword() {
         selectedCharArray = caseArray[randomCharArrayNum];
         randomCharNum = Math.floor(Math.random() * selectedCharArray.length);
         randomChar = selectedCharArray[randomCharNum];
-        passwordtxt = randomChar;
+        passwordtxt += randomChar;
     }
     passwordEntry.textContent = passwordtxt;
-
-};
-
+}
 // Write password to the #password input
 function writePassword() {
     var password = generatePassword(); //you're expect to create the string based on the users parameters

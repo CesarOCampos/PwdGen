@@ -21,8 +21,10 @@ function generatePassword() {
     }
     passwordLength();
     buildPassword();
-    generatePassword();
+
 };
+
+generatePassword();
 
 function passwordLength() {
     var passwordLength = parseInt(prompt("How many characters would you like your password to be? It should be atleast 8, but not exceed 128 characters."));
@@ -69,6 +71,7 @@ function writePassword() {
     var passwordText = document.querySelector("#password"); //click event
     passwordText.buildPassword() = password;
 }
+//trying to implement a copy to clipboard button.
 
 // function copyClipboard() {
 //     /* Get the text field */

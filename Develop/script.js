@@ -1,17 +1,12 @@
-// Assignment Code
-var caseArray = [];
+var anArray = [];
 var lowerCaseChar = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var upperCaseChar = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "W", "X", "Y", "Z"];
 var numericChar = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 var specialChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "{", "}", "|", "[", "]", ";", "'", ":", "<", ">", "?", "/"];
 var generateBtn = document.querySelector("#generate");
-
-//document.querySelector("#copy").addEventListener("click", copy);
+var copyBtn = document.querySelector("#copy");
 
 function generatePassword() {
-    //var passwordtxt = " ";
-
-    // Add event listener tologic here = prompt a few timesbuild a string based on the input
     var upperCase = confirm("Would you like to include uppercase characters?");
     var lowerCase = confirm("Would you like to include lowercase characters?");
     var special = confirm("Would you like to include special characters?");
@@ -26,11 +21,12 @@ function generatePassword() {
     }
     passwordLength();
     buildPassword();
+    generatePassword();
 };
 
 function passwordLength() {
     var passwordLength = parseInt(prompt("How many characters would you like your password to be? It should be atleast 8, but not exceed 128 characters."));
-
+    //var passwordLength = prompt("How many characters would you like your password to be? It should be atleast 8, but not exceed 128 characters.");
     if (passwordLength < 8) {
         alert("Password length must be at least 8 characters.");
         passwordLength();
@@ -39,42 +35,56 @@ function passwordLength() {
         alert("Password length must be less than 128 characters");
         passwordLength();
     } else {
-        return passwordLength;
+        return;
         //prompt("How many characters would you like your password to be? It should be atleast 8, but not exceed 128 characters.");
     }
-    //return passwordLength;
-
+    return passwordLength;
 }
 
 function buildPassword() {
-    if (lowerCase == true) { caseArray.push(lowerCaseChar) };
-    if (upperCase == true) { caseArray.push(upperCaseChar) };
-    if (special == true) { caseArray.push(specialChar) };
-    if (numeric == true) { caseArray.push(numericChar) };
+    if (lowerCase == true) { anArray.push(lowerCaseChar) };
+    if (upperCase == true) { anArray.push(upperCaseChar) };
+    if (special == true) { anArray.push(specialChar) };
+    if (numeric == true) { anArray.push(numericChar) };
 
-    for (var i = 0; i < passwordLength; i++) {
+    for (var i = 0; i < passwordLength.length; i++) {
         var randomCharArrayNum;
         var selectedCharArray;
         var randomCharNum;
         var randomChar;
 
-        randomCharArrayNum = parseInt(Math.floor(Math.random() * caseArray.length));
-        selectedCharArray = caseArray[randomCharArrayNum];
+        randomCharArrayNum = parseInt(Math.floor(Math.random() * anArray.length));
+        selectedCharArray = anArray[randomCharArrayNum];
         randomCharNum = Math.floor(Math.random() * selectedCharArray.length);
         randomChar = selectedCharArray[randomCharNum];
-        passwordtxt += randomChar;
+        password += randomChar;
     }
-    passwordEntry.textContent = passwordText;
-}
-// Write password to the #password input
-function writePassword() {
-    var password = generatePassword();
-    //" "; //you're expect to create the string based on the users parameters
-    //pwd1 = 
-    var passwordText = document.querySelector("#password"); //click event
-    //passwordText.value = pwd1;
+    //passwordEntry.textContent = passwordText;
     passwordText.value = password;
 }
 
+// Write password to the #password input
+function writePassword() {
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password"); //click event
+    passwordText.buildPassword() = password;
+}
+
+// function copyClipboard() {
+//     /* Get the text field */
+//     var copyText = document.getElementById("myInput");
+
+//     /* Select the text field */
+//     copyText.select();
+//     copyText.setSelectionRange(0, 99999);
+
+//     /* Copy the text inside the text field */
+//     document.execCommand("copy");
+
+//     /* Alert the copied text */
+//     alert("Copied the text: " + copyText.value);
+// }
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+document.querySelector("#copy").addEventListener("click", copy);

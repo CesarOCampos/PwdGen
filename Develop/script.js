@@ -6,7 +6,14 @@ var specialChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "{", "}", "
 var generateBtn = document.querySelector("#generate");
 var copyBtn = document.querySelector("#copy");
 
+function writePassword() {
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password"); //click event
+    passwordText.value = password;
+}
+
 function generatePassword() {
+    var generatedPassword = " ";
     var upperCase = confirm("Would you like to include uppercase characters?");
     var lowerCase = confirm("Would you like to include lowercase characters?");
     var special = confirm("Would you like to include special characters?");
@@ -22,55 +29,49 @@ function generatePassword() {
     passwordLength();
     buildPassword();
 
+    return generatedPassword;
+
+    function buildPassword() {
+
+        if (lowerCase == true) { anArray.push(lowerCaseChar) };
+        if (upperCase == true) { anArray.push(upperCaseChar) };
+        if (special == true) { anArray.push(specialChar) };
+        if (numeric == true) { anArray.push(numericChar) };
+
+        for (var i = 0; i < anArray.length; i++) {
+            var randomCharArrayNum;
+            var selectedCharArray;
+            var randomCharNum;
+            var randomChar;
+
+            randomCharArrayNum = parseInt(Math.floor(Math.random() * anArray.length));
+            selectedCharArray = anArray[randomCharArrayNum];
+            randomCharNum = Math.floor(Math.random() * selectedCharArray.length);
+            randomChar = selectedCharArray[randomCharNum];
+            password += randomChar;
+        }
+
+        var passwordLength = generatePassword.length;
+        generatedPassword.textContent = passwordText;
+        g //eneratedPassword.textContent = password;
+    }
+
+    function passwordLength() {
+        var passwordLength = parseInt(prompt("How many characters would you like your password to be? It should be atleast 8, but not exceed 128 characters."));
+
+        if (passwordLength < 8) {
+            alert("Password length must be at least 8 characters.");
+            return generatePassword();
+
+        } else if (passwordLength > 128) {
+            alert("Password length must be less than 128 characters");
+            return generatePassword();
+        }
+    }
 };
 
-generatePassword();
-
-function passwordLength() {
-    var passwordLength = parseInt(prompt("How many characters would you like your password to be? It should be atleast 8, but not exceed 128 characters."));
-    //var passwordLength = prompt("How many characters would you like your password to be? It should be atleast 8, but not exceed 128 characters.");
-    if (passwordLength < 8) {
-        alert("Password length must be at least 8 characters.");
-        passwordLength();
-        //else if (passwordLength > 8)
-    } else if (passwordLength > 128) {
-        alert("Password length must be less than 128 characters");
-        passwordLength();
-    } else {
-        return;
-        //prompt("How many characters would you like your password to be? It should be atleast 8, but not exceed 128 characters.");
-    }
-    return passwordLength;
-}
-
-function buildPassword() {
-    if (lowerCase == true) { anArray.push(lowerCaseChar) };
-    if (upperCase == true) { anArray.push(upperCaseChar) };
-    if (special == true) { anArray.push(specialChar) };
-    if (numeric == true) { anArray.push(numericChar) };
-
-    for (var i = 0; i < passwordLength.length; i++) {
-        var randomCharArrayNum;
-        var selectedCharArray;
-        var randomCharNum;
-        var randomChar;
-
-        randomCharArrayNum = parseInt(Math.floor(Math.random() * anArray.length));
-        selectedCharArray = anArray[randomCharArrayNum];
-        randomCharNum = Math.floor(Math.random() * selectedCharArray.length);
-        randomChar = selectedCharArray[randomCharNum];
-        password += randomChar;
-    }
-    //passwordEntry.textContent = passwordText;
-    passwordText.value = password;
-}
-
 // Write password to the #password input
-function writePassword() {
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password"); //click event
-    passwordText.buildPassword() = password;
-}
+
 //trying to implement a copy to clipboard button.
 
 // function copyClipboard() {
@@ -90,4 +91,4 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-document.querySelector("#copy").addEventListener("click", copy);
+//document.querySelector("#copy").addEventListener("click", copy);

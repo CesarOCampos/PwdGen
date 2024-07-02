@@ -59,11 +59,14 @@ function writePassword() {
 
 function copyPassword() {
   var copyPass = document.querySelector('#password');
-  copyPass.select()
+
+  copyPass.select();
+  copyPass.setSelectionRange(0, 99999); /* For mobile devices */
+
   navigator.clipboard.writeText(copyPass.value);
-  
+
   /* Alert the copied text */
-  alert("Copied: " + copyText.value);
+  alert('Copied: ' + copyText.value);
 }
 
 // Add event listener to generate button

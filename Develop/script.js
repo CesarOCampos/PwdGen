@@ -4,6 +4,7 @@ var upperCaseChar = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
 var numericChar = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 var specialChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "{", "}", "|", "[", "]", ";", "'", ":", "<", ">", "?", "/"];
 var generateBtn = document.querySelector("#generate");
+var copyBtn = document.querySelector('#copy');
 
 function generatePassword() {
     var generatedPassword = " ";
@@ -20,12 +21,12 @@ function generatePassword() {
         numeric = confirm("Would you like to include numeric characters?");
     }
 
-    var passwordLength = parseInt(prompt("How many characters would you like your password to be? It should be atleast 8, but not exceed 128 characters."));
+    var passwordLength = parseInt(prompt("How many characters would you like your password to be? It should be atleast 10, but not exceed 128 characters."));
 
-    if (passwordLength < 8) {
-        alert("Password length must be at least 8 characters.");
-    } else if (passwordLength > 128) {
-        alert("Password length must be less than 128 characters");
+    if (passwordLength < 10) {
+        alert("Password length must be at least 10 characters.");
+    } else if (passwordLength > 20) {
+        alert("Password length must be less than 120 characters");
     }
 
     if (lowerCase == true) { anArray.push(lowerCaseChar) };
@@ -55,5 +56,16 @@ function writePassword() {
     passwordText.value = generatedPassword;
 }
 
+
+function copyPassword() {
+  var copyPass = document.querySelector('#password');
+  copyPass.select()
+  navigator.clipboard.writeText(copyPass.value);
+  
+  /* Alert the copied text */
+  alert("Copied: " + copyText.value);
+}
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+copyBtn.addEventListener('click', copyPassword);

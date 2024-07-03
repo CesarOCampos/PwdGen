@@ -25,8 +25,8 @@ function generatePassword() {
 
     if (passwordLength < 10) {
         alert("Password length must be at least 10 characters.");
-    } else if (passwordLength > 20) {
-        alert("Password length must be less than 120 characters");
+    } else if (passwordLength > 128) {
+        alert("Password length must be less than 128 characters");
     }
 
     if (lowerCase == true) { anArray.push(lowerCaseChar) };

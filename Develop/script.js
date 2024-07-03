@@ -7,7 +7,7 @@ var generateBtn = document.querySelector("#generate");
 var copyBtn = document.querySelector('#copy');
 
 function generatePassword() {
-    var generatedPassword = " ";
+    var generatedPassword = "";
     var upperCase = confirm("Would you like to include uppercase characters?");
     var lowerCase = confirm("Would you like to include lowercase characters?");
     var special = confirm("Would you like to include special characters?");
